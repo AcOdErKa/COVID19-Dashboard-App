@@ -10,9 +10,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
-
 app.get("/getAllData", (req, res, next) => {
     const raw_data = [];
     fs.createReadStream('data/covid_19_clean_complete.csv')
@@ -91,8 +88,6 @@ app.get("/getAllData/:country/:state",(req, res) => {
     });
     
 });
-
-
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");
