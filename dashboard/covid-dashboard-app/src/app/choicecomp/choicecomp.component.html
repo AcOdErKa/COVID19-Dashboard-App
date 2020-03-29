@@ -1,0 +1,14 @@
+<form [formGroup]="countryForm">
+  <div class="form-group">
+    <select formControlName="country" class="form-control" (change)="onChangeCountry($event.target.value)">
+      <option value="">Select country...</option>
+      <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <select formControlName="state" class="form-control">
+      <option value="">Select state...</option>
+      <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+    </select>
+  </div>
+</form>
