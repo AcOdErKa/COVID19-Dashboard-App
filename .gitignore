@@ -1,1 +1,48 @@
 /backend/node_modules
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dashboard/covid-dashboard-app/dist
+/dashboard/covid-dashboard-app/tmp
+/dashboard/covid-dashboard-app/out-tsc
+# Only exists if Bazel was run
+/dashboard/covid-dashboard-app/bazel-out
+
+# dependencies
+/dashboard/covid-dashboard-app/node_modules
+
+# profiling files
+/dashboard/covid-dashboard-app/chrome-profiler-events*.json
+/dashboard/covid-dashboard-app/speed-measure-plugin*.json
+
+# IDEs and editors
+/dashboard/covid-dashboard-app/.idea
+/dashboard/covid-dashboard-app/.project
+/dashboard/covid-dashboard-app/.classpath
+/dashboard/covid-dashboard-app/.c9/
+/dashboard/covid-dashboard-app/*.launch
+/dashboard/covid-dashboard-app/.settings/
+/dashboard/covid-dashboard-app/*.sublime-workspace
+
+# IDE - VSCode
+/dashboard/covid-dashboard-app/.vscode/*
+/dashboard/covid-dashboard-app/!.vscode/settings.json
+/dashboard/covid-dashboard-app/!.vscode/tasks.json
+/dashboard/covid-dashboard-app/!.vscode/launch.json
+/dashboard/covid-dashboard-app/!.vscode/extensions.json
+/dashboard/covid-dashboard-app/.history/*
+
+# misc
+/dashboard/covid-dashboard-app/.sass-cache
+/dashboard/covid-dashboard-app/connect.lock
+/dashboard/covid-dashboard-app/coverage
+/dashboard/covid-dashboard-app/libpeerconnection.log
+/dashboard/covid-dashboard-app/npm-debug.log
+/dashboard/covid-dashboard-app/yarn-error.log
+/dashboard/covid-dashboard-app/testem.log
+/dashboard/covid-dashboard-app/typings
+
+# System Files
+/dashboard/covid-dashboard-app/.DS_Store
+/dashboard/covid-dashboard-app/Thumbs.db

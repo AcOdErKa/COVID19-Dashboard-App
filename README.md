@@ -25,7 +25,7 @@ If you get error for nodemon, please Install nodemon using :
 npm install -g nodemon
 ```
 
-For the dashboard, go to the frontend foler and run :
+For the dashboard, go to the dashboard/covid-dashboard-app folder and run :
 ```
 npm install
 ```
