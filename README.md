@@ -1,6 +1,6 @@
 # COVID19 Dashboard App
 
-This application reads data from KAGGLE Data Set and Displays in a Dashboard. The [Data Set](https://www.kaggle.com/imdevskp/corona-virus-report/data#) is updated every 24 hours in [Kaggle](https://www.kaggle.com/) and You can replace the .csv file to Get The Latest Data.
+This application reads data from KAGGLE Data Set and Displays in a Dashboard. The [Data Set](https://www.kaggle.com/imdevskp/corona-virus-report/data#) is updated every 24 hours in [Kaggle](https://www.kaggle.com/) and You can replace the .csv file with <b>covid_19_clean_complete.csv</b> to Get The Latest Data.
 
 ## Getting Started
 
