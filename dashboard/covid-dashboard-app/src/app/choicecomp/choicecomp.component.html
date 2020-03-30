@@ -1,14 +1,99 @@
-<form [formGroup]="countryForm">
-  <div class="form-group">
-    <select formControlName="country" class="form-control" (change)="onChangeCountry($event.target.value)">
-      <option value="">Select country...</option>
-      <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
-    </select>
+<br>
+<div class = "container">
+  <form [formGroup]="countryForm" class = "form-inline">
+      <select formControlName="country" class="form-control" style="width: 50%" (change)="onChangeCountry($event.target.value)">
+        <option value="">Select country...</option>
+        <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+      </select>
+
+      <select formControlName="state" class="form-control" style="width: 40%; margin-left: 40px;" (change)="onChangeState($event.target.value)">
+        <option value="">Select state...</option>
+        <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
+      </select>
+      <button class="btn btn-info ml-1"><a href="/" class="text-white font-weight-bold">Clear</a></button>
+  </form>
+</div>
+<br>
+<div class = "container-fluid">
+  <div class = "row justify-content-md-center text-center">
+    <div class="card text-white bg-primary sm-3 m-1" style="width: 18%">
+      <div class="card-header font-weight-bold">Country Name</div>
+      <div class="card-body">
+        <h5 class="card-title">{{countryName}}</h5>
+      </div>
+    </div>
+    <div class="card text-white bg-secondary sm-3 m-1" style="width: 18%">
+      <div class="card-header font-weight-bold">State Name</div>
+      <div class="card-body">
+        <h5 class="card-title">{{stateName}}</h5>
+      </div>
+    </div>
+    <div class="card text-white bg-warning sm-3 m-1" style="width: 18%">
+      <div class="card-header font-weight-bold">Total Cases</div>
+      <div class="card-body">
+        <h5 class="card-title">{{totalCases}}</h5>
+      </div>
+    </div>
+    <div class="card text-white bg-success sm-3 m-1" style="width: 18%">
+      <div class="card-header font-weight-bold">Recovered</div>
+      <div class="card-body">
+        <h5 class="card-title">{{recoveredCases}}</h5>
+      </div>
+    </div>
+    <div class="card text-white bg-danger sm-3 m-1" style="width: 18%">
+      <div class="card-header font-weight-bold">Deaths</div>
+      <div class="card-body">
+        <h5 class="card-title">{{deathCases}}</h5>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <select formControlName="state" class="form-control">
-      <option value="">Select state...</option>
-      <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
-    </select>
+  <br><br>
+  <div class="row">
+    <div class="col-lg-4">
+      <div style="display: block;">
+        <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div style="display: block;">
+        <canvas baseChart
+          [datasets]="lineChartData2"
+          [labels]="lineChartLabels2"
+          [options]="lineChartOptions2"
+          [colors]="lineChartColors2"
+          [legend]="lineChartLegend2"
+          [chartType]="lineChartType2"
+          [plugins]="lineChartPlugins2">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div style="display: block;">
+        <canvas baseChart
+          [datasets]="lineChartData3"
+          [labels]="lineChartLabels3"
+          [options]="lineChartOptions3"
+          [colors]="lineChartColors3"
+          [legend]="lineChartLegend3"
+          [chartType]="lineChartType3"
+          [plugins]="lineChartPlugins3">
+        </canvas>
+      </div>
+    </div>
   </div>
-</form>
+  <div class="row no-gutters align-items-center">
+    <div class="col mr-2">
+      <div class="container">
+        <div id="map" class="map"></div>
+      </div>
+    </div>
+  </div>
+</div>
