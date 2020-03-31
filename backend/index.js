@@ -89,6 +89,10 @@ app.get("/getAllData/:country/:state",(req, res) => {
     
 });
 
-app.listen(3000, () => {
+app.get("/", (req, res) => {
+    res.json({"message":"Welcome to COVID19 API"})
+});
+
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
    });

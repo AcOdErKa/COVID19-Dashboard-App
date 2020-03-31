@@ -5,8 +5,8 @@ import { Casedata } from '../models/casedata.model';
 @Injectable()
 export class ChoiceService {
   constructor(private http: HttpClient) {}
-  private countryURL = 'http://localhost:3000/getAllCountry';
-  private stateURL = 'http://localhost:3000/getProvince/';
+  private countryURL = 'https://still-falls-89184.herokuapp.com/getAllCountry';
+  private stateURL = 'https://still-falls-89184.herokuapp.com/getProvince/';
   public getCountries() {
     return this.http.get<any[]>(this.countryURL);
   }
@@ -16,10 +16,10 @@ export class ChoiceService {
   }
 
   public getCountryData(countryName) {
-    return this.http.get<Casedata[]>('http://localhost:3000/getAllData/' + countryName);
+    return this.http.get<Casedata[]>('https://still-falls-89184.herokuapp.com/getAllData/' + countryName);
   }
 
   public getCountryDataWithProvince(countryName, stateName) {
-    return this.http.get<Casedata[]>('http://localhost:3000/getAllData/' + countryName + '/' + stateName);
+    return this.http.get<Casedata[]>('https://still-falls-89184.herokuapp.com/getAllData/' + countryName + '/' + stateName);
   }
 }
