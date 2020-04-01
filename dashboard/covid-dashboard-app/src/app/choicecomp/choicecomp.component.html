@@ -1,55 +1,108 @@
 <br>
 <div class = "container">
   <form [formGroup]="countryForm" class = "form-inline">
-      <select formControlName="country" class="form-control" style="width: 50%" (change)="onChangeCountry($event.target.value)">
+    <div class="form-row w-100">
+      <div class="col">
+      <select formControlName="country" class="form-control w-100" (change)="onChangeCountry($event.target.value)">
         <option value="">Select country...</option>
         <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
       </select>
-
-      <select formControlName="state" class="form-control" style="width: 40%; margin-left: 40px;" (change)="onChangeState($event.target.value)">
+      </div>
+      <div class="col">
+      <select formControlName="state" class="form-control w-100" (change)="onChangeState($event.target.value)">
         <option value="">Select state...</option>
         <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
       </select>
-      <button class="btn btn-info ml-1"><a href="/" class="text-white font-weight-bold">Clear</a></button>
+      </div>
+      <div class="col">
+      <button class="btn btn-info ml-1"><a href="/" class="text-white font-weight-bold" style="text-decoration: none;">Choose New Country/State</a></button>
+      </div>
+    </div>
   </form>
 </div>
 <br>
 <div class = "container-fluid">
-  <div class = "row justify-content-md-center text-center">
-    <div class="card text-white bg-primary sm-3 m-1" style="width: 18%">
-      <div class="card-header font-weight-bold">Country Name</div>
-      <div class="card-body">
-        <h5 class="card-title">{{countryName}}</h5>
-      </div>
+  <div class="container">
+    <div class="card-deck">
+        <div class="card bg-primary mb-4">
+            <div class="card-body text-white text-center ">
+                <h5 class="card-title">Country Name</h5>
+                <hr>
+                <p class="card-text" style="font-size: 25px">{{countryName}}</p>
+            </div>
+        </div>
+        <div class="card bg-secondary mb-4">
+            <div class="card-body text-white text-center">
+                <h5 class="card-title">State Name</h5>
+                <hr>
+                <p class="card-text" style="font-size: 25px">{{stateName}}</p>
+            </div>
+        </div>
+        <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+        <div class="card mb-4" style="background-color: #E59F1E;">
+            <div class="card-body text-white text-center">
+                <h5 class="card-title">Total Cases</h5>
+                <hr>
+                <p class="card-text" style="font-size: 30px">{{totalCases}}</p>
+            </div>
+        </div>
+        <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+        <div class="card bg-success mb-4">
+            <div class="card-body text-white text-center">
+                <h5 class="card-title">Recovered</h5>
+                <hr>
+                <p class="card-text" style="font-size: 30px">{{recoveredCases}}</p>
+            </div>
+        </div>
+        <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+        <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+        <div class="card bg-danger mb-4">
+            <div class="card-body text-white text-center">
+                <h5 class="card-title">Deaths</h5>
+                <hr>
+                <p class="card-text" style="font-size: 30px">{{deathCases}}</p>
+            </div>
+        </div>
     </div>
-    <div class="card text-white bg-secondary sm-3 m-1" style="width: 18%">
-      <div class="card-header font-weight-bold">State Name</div>
-      <div class="card-body">
-        <h5 class="card-title">{{stateName}}</h5>
-      </div>
-    </div>
-    <div class="card text-white bg-warning sm-3 m-1" style="width: 18%">
-      <div class="card-header font-weight-bold">Total Cases</div>
-      <div class="card-body">
-        <h5 class="card-title">{{totalCases}}</h5>
-      </div>
-    </div>
-    <div class="card text-white bg-success sm-3 m-1" style="width: 18%">
-      <div class="card-header font-weight-bold">Recovered</div>
-      <div class="card-body">
-        <h5 class="card-title">{{recoveredCases}}</h5>
-      </div>
-    </div>
-    <div class="card text-white bg-danger sm-3 m-1" style="width: 18%">
-      <div class="card-header font-weight-bold">Deaths</div>
-      <div class="card-body">
-        <h5 class="card-title">{{deathCases}}</h5>
-      </div>
+</div>
+<br>
+  <div class="container">
+    <div class="card-deck">
+      <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+        <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+        <div class="card mb-4 h-100" style="background-color: #AD1D3B;">
+          <div class="card-body h-100 text-white">
+              <h5 class="card-title text-center">World</h5>
+              <hr>
+              <div class="container text-center">
+                  <button type="button" class="btn m-1 text-white" style="background-color: #358132; border-color: #358132;">
+                    Total <span class="badge badge-light">{{wtotal}}</span>
+                  </button>
+                  <button type="button" class="btn m-1 text-white" style="background-color: #358132; border-color: #358132;">
+                    Recovered <span class="badge badge-light">{{wrecovered}}</span>
+                  </button>
+                  <button type="button" class="btn m-1 text-white" style="background-color: #358132; border-color: #358132;">
+                    Dead <span class="badge badge-light">{{wdeaths}}</span>
+                  </button>
+                  <button type="button" class="btn m-1 text-white" style="background-color: #358132; border-color: #358132;">
+                    Currently Infected <span class="badge badge-light">{{winf}}</span>
+                  </button>
+                  <button type="button" class="btn m-1 text-white" style="background-color: #358132; border-color: #358132;">
+                    In Mid Conditions <span class="badge badge-light">{{wmid}}</span>
+                  </button>
+                  <button type="button" class="btn m-1 text-white" style="background-color: #358132; border-color: #358132;">
+                    Critical States <span class="badge badge-light">{{wcrit}}</span>
+                  </button>
+                </div>
+          </div>
+        </div>
     </div>
   </div>
+
   <br><br>
   <div class="row">
     <div class="col-lg-4">
+      <p class="badge text-white" style="background-color: #E59F1E; font-size: medium;">Total Cases</p>
       <div style="display: block;">
         <canvas baseChart
           [datasets]="lineChartData"
@@ -63,6 +116,7 @@
       </div>
     </div>
     <div class="col-lg-4">
+      <p class="badge text-white badge-success" style="font-size: medium;">Recovered</p>
       <div style="display: block;">
         <canvas baseChart
           [datasets]="lineChartData2"
@@ -77,6 +131,7 @@
     </div>
     <div class="col-lg-4">
       <div style="display: block;">
+        <p class="badge text-white badge-danger" style="font-size: medium;">Deaths</p>
         <canvas baseChart
           [datasets]="lineChartData3"
           [labels]="lineChartLabels3"
@@ -89,8 +144,41 @@
       </div>
     </div>
   </div>
+  <div class = "row">
+    <div class="col-lg-6">
+      <div style="display: block;">
+        <p class="badge text-white" style="font-size: medium; background-color: #B9117C;">Fatality Rate by Age Group</p>
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"
+          [colors]="barChartColors">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div style="display: block;">
+        <p class="badge text-white" style="font-size: medium; background-color: #1A429F;">Fatality Rate Gender</p>
+        <canvas baseChart
+          [datasets]="barChartData2"
+          [labels]="barChartLabels2"
+          [options]="barChartOptions2"
+          [plugins]="barChartPlugins2"
+          [legend]="barChartLegend2"
+          [chartType]="barChartType2"
+          [colors]="barChartColors2">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
   <div class="row no-gutters align-items-center">
     <div class="col mr-2">
+      <p class="badge text-white" style="font-size: medium; background-color: #209E24 ;">Geographic Location</p>
       <div class="container">
         <div id="map" class="map"></div>
       </div>

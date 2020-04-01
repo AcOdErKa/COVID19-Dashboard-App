@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ChoiceService } from './choicecomp.service';
 import { Country } from '../models/country.model';
 import { Casedata } from '../models/casedata.model';
-import { ChartDataSets, ChartOptions } from 'chart.js';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
 declare var ol: any;
@@ -23,6 +23,13 @@ export class ChoicecompComponent implements OnInit {
   deathCases = '';
   cases: Casedata[];
 
+  wtotal: string;
+  wrecovered: string;
+  wdeaths: string;
+  winf: string;
+  wmid: string;
+  wcrit: string;
+
   tdates = new Array();
   tcases = new Array();
   rcases = new Array();
@@ -31,6 +38,12 @@ export class ChoicecompComponent implements OnInit {
   lat = 0.0;
   lon = 0.0;
   map: any;
+
+  agelabel = new Array();
+  agedeaths = new Array();
+
+  sexlabel = new Array();
+  sexdeaths = new Array();
 // Map
 newMap(latitude, longitude) {
   console.log(latitude,longitude);
@@ -180,6 +193,76 @@ addPoint(lat: number, lng: number) {
   public lineChartPlugins3 = [];
   // Death Chart Ends
 
+  //Bar Chart by Age
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+         scaleLabel: {
+            display: true,
+            labelString: 'Percentage of Death Cases'
+         }
+      }],
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Age Group'
+        }
+      }]
+   }
+  };
+  public barChartLabels: Label[] = this.agelabel;
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartPlugins = [];
+
+  public barChartData: ChartDataSets[] = [
+    { data: this.agedeaths, label: 'Deaths' },
+  ];
+  public barChartColors: Color[] = [
+    {
+      borderColor: 'rgba(0,0,0,0)',
+      backgroundColor: '#C680CB',
+    },
+  ];
+  //Bar Chart by Age Ends
+
+  //Bar Chart by Sex
+
+  public barChartOptions2: ChartOptions = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+         scaleLabel: {
+            display: true,
+            labelString: 'Percentage of Death Cases'
+         }
+      }],
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Gender'
+        }
+      }]
+   }
+  };
+  public barChartLabels2: Label[] = this.sexlabel;
+  public barChartType2: ChartType = 'bar';
+  public barChartLegend2 = true;
+  public barChartPlugins2 = [];
+
+  public barChartData2: ChartDataSets[] = [
+    { data: this.sexdeaths, label: 'Deaths' },
+  ];
+  public barChartColors2: Color[] = [
+    {
+      borderColor: 'rgba(0,0,0,0)',
+      backgroundColor: '#3F5C9F',
+    },
+  ];
+  //Bar Chart by Sex Ends
+
   constructor(private choiceService: ChoiceService) { }
   ngOnInit(): void {
     this.choiceService.getCountries().subscribe(
@@ -191,15 +274,49 @@ addPoint(lat: number, lng: number) {
       }
     );
 
+    this.choiceService.getDeathRateBySex().subscribe(
+      data => {
+        for( const d in data['table']) {
+          this.sexlabel.push(data['table'][d]['Sex']);
+          const sexval = data['table'][d]['DeathRateAllCases'];
+          this.sexdeaths.push(+sexval.substr(0,sexval.length-1));
+        }
+      }
+    );
+
     this.countryForm = new FormGroup({
       country: new FormControl(''),
       state: new FormControl(''),
     });
 
+    this.choiceService.getDeathRateByAge().subscribe(
+      data => {
+        for(const d in data['table']) {
+          this.agelabel.push(data['table'][d]['Age']);
+          if(data['table'][d]['DeathRateAllCases'] === 'no fatalities') {
+            this.agedeaths.push(0.0);
+          } else {
+            const ageval = data['table'][d]['DeathRateAllCases'];
+            this.agedeaths.push(+ageval.substr(0,ageval.length-1));
+          }
+        }
+      }
+    );
+
+    this.choiceService.getWorldData().subscribe(
+      data => {
+        this.wtotal = data['reports'][0]['cases'];
+        this.wrecovered = data['reports'][0]['recovered'];
+        this.wdeaths = data['reports'][0]['deaths'];
+        this.winf = data['reports'][0]['active_cases'][0]['currently_infected_patients'];
+        this.wmid = data['reports'][0]['active_cases'][0]['inMidCondition'];
+        this.wcrit = data['reports'][0]['active_cases'][0]['criticalStates'];
+      }
+    );
+
   }
 
   onChangeCountry(countryName: string) {
-    console.log(countryName);
     this.countryName = countryName;
     this.states = new Array();
     this.choiceService.getStates(countryName).subscribe(
