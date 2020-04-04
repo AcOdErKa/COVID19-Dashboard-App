@@ -93,6 +93,10 @@ app.get("/", (req, res) => {
     res.json({"message":"Welcome to COVID19 API"})
 });
 
+app.get("/updatetime",(req, res) => {
+    res.json({"message":"Last Updated on 4th April 2020 12:00"})
+})
+
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
    });

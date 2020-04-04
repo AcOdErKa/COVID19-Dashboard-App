@@ -36,4 +36,8 @@ export class ChoiceService {
   public getWorldData() {
     return this.http.get<any[]>('https://covid19-server.chrismichael.now.sh/api/v1/AllReports');
   }
+
+  public getLastUpdateTime() {
+    return this.http.get<any[]>('https://still-falls-89184.herokuapp.com/updatetime');
+  }
 }
